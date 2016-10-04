@@ -26,8 +26,9 @@ let processedAds = [];
 
 class Ad {
     //constructor(url, image, title, description, location, price) {
-    constructor(url, title, description, location, price) {
+    constructor(url, title, description, location, price, id) {
         this.url = url;
+        this.adId = id;
         //if(url.indexOf('quebec') > -1)
         //    this.province = 'quebec';
         //else if(url.indexOf('ontario') > -1)
@@ -43,6 +44,7 @@ class Ad {
         var ad = new Ad();
 
         ad.url = 'http://www.kijiji.ca' + $jquerySelector.attr('data-vip-url');
+        //ad.adId=data-$jquerySelector.find('data-adid').text().trim();
 
         var adDate = $jquerySelector.find('span.date-posted').text().trim();
         //ad.image = $jquerySelector.find('.image img').attr('src');
@@ -145,46 +147,46 @@ function sendAdsFoundSms(ads) {
             console.log('message: ' + message);
 
             // jon
-            //client.messages.create({
-           //   body: message,
-           //   to: +15146229479,
-           //   from: config.twilio.sendingNumber
-           // }, function(err, data) {
-           //     if (err) {
-           //         console.error('Error sending sms.');
-           //         console.error(err);
-           //     } else {
-           //         console.log('Sms sent to jon');
-           //     }
-           // });
+            client.messages.create({
+             body: message,
+             to: +15146229479,
+             from: config.twilio.sendingNumber
+           }, function(err, data) {
+               if (err) {
+                   console.error('Error sending sms.');
+                   console.error(err);
+               } else {
+                   console.log('Sms sent to jon');
+               }
+           });
 
             // Mitchell
-            client.messages.create({
-              body: message,
-              to: +15148656882,
-              from: config.twilio.sendingNumber
-            }, function(err, data) {
-                if (err) {
-                    console.error('Error sending sms.');
-                    console.error(err);
-                } else {
-                    console.log('Sms sent to mitchell');
-                }
-            });
+            // client.messages.create({
+            //   body: message,
+            //   to: +15148656882,
+            //   from: config.twilio.sendingNumber
+            // }, function(err, data) {
+            //     if (err) {
+            //         console.error('Error sending sms.');
+            //         console.error(err);
+            //     } else {
+            //         console.log('Sms sent to mitchell');
+            //     }
+            // });
 
             // Mitchell'partner 1
-            client.messages.create({
-              body: message,
-              to: +15142475555,
-              from: config.twilio.sendingNumber
-            }, function(err, data) {
-                if (err) {
-                    console.error('Error sending sms.');
-                    console.error(err);
-                } else {
-                    console.log('Sms sent to mitchell partner 1');
-                }
-            });
+            // client.messages.create({
+            //   body: message,
+            //   to: +15142475555,
+            //   from: config.twilio.sendingNumber
+            // }, function(err, data) {
+            //     if (err) {
+            //         console.error('Error sending sms.');
+            //         console.error(err);
+            //     } else {
+            //         console.log('Sms sent to mitchell partner 1');
+            //     }
+            // });
             threashold++;
         }
         else
