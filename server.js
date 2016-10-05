@@ -26,9 +26,9 @@ let processedAds = [];
 
 class Ad {
     //constructor(url, image, title, description, location, price) {
-    constructor(url, title, description, location, price, id) {
+    constructor(url, title, description, location, price) {
         this.url = url;
-        this.adId = id;
+        //this.adId = id;
         //if(url.indexOf('quebec') > -1)
         //    this.province = 'quebec';
         //else if(url.indexOf('ontario') > -1)
@@ -45,6 +45,8 @@ class Ad {
 
         ad.url = 'http://www.kijiji.ca' + $jquerySelector.attr('data-vip-url');
         //ad.adId=data-$jquerySelector.find('data-adid').text().trim();
+        var adTimestamp = new Date();
+        ad.dateCreated = adTimestamp;
 
         var adDate = $jquerySelector.find('span.date-posted').text().trim();
         //ad.image = $jquerySelector.find('.image img').attr('src');
@@ -207,6 +209,23 @@ const cronRule = `*/${config.minutesBetweenCheck} * * * *`;
 schedule.scheduleJob(cronRule, () => {
     updateItems().then(() => {
         console.log(`Ads updated, number of ads: ${processedAds.length}`);
+
+        console.log('Removing old ads');
+        var live = new Date();
+        for (var i = processedAds.length - 1; i >= 0; i--) {
+            Ad ad = processedAds[i];
+            var adDateCreated = ad.dateCreated;
+            var difference = live - adDateCreated;
+
+            const TOTAL_MILLISECONDS_IN_A_HOUR = 1000 * 60 * 60;
+
+            // http://stackoverflow.com/questions/39522958/node-js-dates-comparison
+            // if difference between current date and ad timestamp is greater than one hour, delete
+            if (Math.floor(difference / TOTAL_MILLISECONDS_IN_A_HOUR) > 1) {
+                console.log("Ad with timestamp [" + adDateCreated + "] is more than one hour old (current date: [" + mydatestring + "]");
+                processedAds.splice(i, 1);
+            }
+}
     });
 });
 
