@@ -214,7 +214,7 @@ schedule.scheduleJob(cronRule, () => {
         var live = new Date();
         console.log("live date: " + live);
         for (var i = processedAds.length - 1; i >= 0; i--) {
-            Ad ad = processedAds[i];
+            var ad = processedAds[i];
             var adDateCreated = ad.dateCreated;
             console.log('adDateCreated: ' + adDateCreated);
             var difference = live - adDateCreated;
