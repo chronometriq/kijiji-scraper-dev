@@ -228,7 +228,8 @@ schedule.scheduleJob(cronRule, () => {
                 console.log("Ad with timestamp [" + adDateCreated + "] is more than one hour old (current date: [" + mydatestring + "]");
                 processedAds.splice(i, 1);
             }
-}
+        }
+        console.log(`Number of ads after remove: ${processedAds.length}`);
     });
 });
 
