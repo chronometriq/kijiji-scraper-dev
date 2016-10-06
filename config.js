@@ -36,6 +36,12 @@ var config = {
         gmailPassword: ''
     },
 
+    phones: {
+        jon: process.env.KIJIJI_PHONE_JON,
+        clientA: process.env.KIJIJI_PHONE_1,
+        clientB: process.env.KIJIJI_PHONE_2
+    },
+
     twilio: {
         account: process.env.TWILIO_ACCOUNT_SID,
         key: process.env.TWILIO_AUTH_TOKEN,

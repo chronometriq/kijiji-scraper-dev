@@ -146,12 +146,13 @@ function sendAdsFoundSms(ads) {
             console.log(`sending sms for ad: ${ad.title} in location: ${ad.location}` );
             //var message = 'ad in:' + ad.location.substring(0,60) + '; Title: ' + ad.title.substring(0,100);
             var message = ad.url;
-            console.log('message: ' + message);
+            var phone_jon = config.phones.jon;
+            console.log('message: ' + message + ' to []' + phone_jon);
 
             // jon
             client.messages.create({
              body: message,
-             to: process.env.KIJIJI_PHONE_JON,
+             to: config.phones.jon,
              from: config.twilio.sendingNumber
            }, function(err, data) {
                if (err) {
@@ -165,7 +166,7 @@ function sendAdsFoundSms(ads) {
             // Mitchell
             // client.messages.create({
             //   body: message,
-            //   to: process.env.KIJIJI_PHONE_1,
+            //   to: config.phones.clientA,
             //   from: config.twilio.sendingNumber
             // }, function(err, data) {
             //     if (err) {
@@ -179,7 +180,7 @@ function sendAdsFoundSms(ads) {
             // Mitchell'partner 1
             // client.messages.create({
             //   body: message,
-            //   to: process.env.KIJIJI_PHONE_2,
+            //   to: config.phones.clientB,
             //   from: config.twilio.sendingNumber
             // }, function(err, data) {
             //     if (err) {
