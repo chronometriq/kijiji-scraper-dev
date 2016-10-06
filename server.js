@@ -151,7 +151,7 @@ function sendAdsFoundSms(ads) {
             // jon
             client.messages.create({
              body: message,
-             to: +15146229479,
+             to: process.env.KIJIJI_PHONE_JON,
              from: config.twilio.sendingNumber
            }, function(err, data) {
                if (err) {
@@ -165,7 +165,7 @@ function sendAdsFoundSms(ads) {
             // Mitchell
             // client.messages.create({
             //   body: message,
-            //   to: +15148656882,
+            //   to: process.env.KIJIJI_PHONE_1,
             //   from: config.twilio.sendingNumber
             // }, function(err, data) {
             //     if (err) {
@@ -179,7 +179,7 @@ function sendAdsFoundSms(ads) {
             // Mitchell'partner 1
             // client.messages.create({
             //   body: message,
-            //   to: +15142475555,
+            //   to: process.env.KIJIJI_PHONE_2,
             //   from: config.twilio.sendingNumber
             // }, function(err, data) {
             //     if (err) {
@@ -212,10 +212,13 @@ schedule.scheduleJob(cronRule, () => {
 
         console.log('Removing old ads');
         var live = new Date();
+        console.log("live date: " + live);
         for (var i = processedAds.length - 1; i >= 0; i--) {
             Ad ad = processedAds[i];
             var adDateCreated = ad.dateCreated;
+            console.log('adDateCreated: ' + adDateCreated);
             var difference = live - adDateCreated;
+            console.log('difference: ' + difference);
 
             const TOTAL_MILLISECONDS_IN_A_HOUR = 1000 * 60 * 60;
 
