@@ -225,7 +225,7 @@ schedule.scheduleJob(cronRule, () => {
 
             // http://stackoverflow.com/questions/39522958/node-js-dates-comparison
             // if difference between current date and ad timestamp is greater than one hour, delete
-            if (Math.floor(difference / TOTAL_MILLISECONDS_IN_A_HOUR) > 1) {
+            if (Math.floor(difference / TOTAL_MILLISECONDS_IN_A_HOUR) >= 1) {
                 console.log("Ad with timestamp [" + adDateCreated + "] is more than one hour old (current date: [" + mydatestring + "]");
                 processedAds.splice(i, 1);
             }
