@@ -164,32 +164,32 @@ function sendAdsFoundSms(ads) {
            });
 
             // Mitchell
-            // client.messages.create({
-            //   body: message,
-            //   to: config.phones.clientA,
-            //   from: config.twilio.sendingNumber
-            // }, function(err, data) {
-            //     if (err) {
-            //         console.error('Error sending sms.');
-            //         console.error(err);
-            //     } else {
-            //         console.log('Sms sent to mitchell');
-            //     }
-            // });
+            client.messages.create({
+              body: message,
+              to: config.phones.clientA,
+              from: config.twilio.sendingNumber
+            }, function(err, data) {
+                if (err) {
+                    console.error('Error sending sms.');
+                    console.error(err);
+                } else {
+                    console.log('Sms sent to mitchell');
+                }
+            });
 
             // Mitchell'partner 1
-            // client.messages.create({
-            //   body: message,
-            //   to: config.phones.clientB,
-            //   from: config.twilio.sendingNumber
-            // }, function(err, data) {
-            //     if (err) {
-            //         console.error('Error sending sms.');
-            //         console.error(err);
-            //     } else {
-            //         console.log('Sms sent to mitchell partner 1');
-            //     }
-            // });
+            client.messages.create({
+              body: message,
+              to: config.phones.clientB,
+              from: config.twilio.sendingNumber
+            }, function(err, data) {
+                if (err) {
+                    console.error('Error sending sms.');
+                    console.error(err);
+                } else {
+                    console.log('Sms sent to mitchell partner 1');
+                }
+            });
             threashold++;
         }
         else
